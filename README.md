@@ -1,8 +1,7 @@
 this is my task from bazar kif for recruitment
 
-## vercel deployment link
-
-code-challenge-green-five.vercel.app
+## vercel deployment 
+https://code-challenge-green-five.vercel.app/
 
 # figma design link
 
