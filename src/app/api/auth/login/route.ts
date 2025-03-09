@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { User } from "./types";
 
 export async function POST(req: Request) {
   const { email } = await req.json();
@@ -6,10 +7,10 @@ export async function POST(req: Request) {
   try {
     // Fetch users from the API
     const res = await fetch("https://jsonplaceholder.typicode.com/users");
-    const users = await res.json();
+    const users: User[] = await res.json();
 
     // Find user with matching email
-    const user = users.find((u: any) => u.email === email);
+    const user = users.find((u) => u.email === email);
 
     if (user) {
       // Simulate a JWT token (since jsonplaceholder doesn't provide one)
