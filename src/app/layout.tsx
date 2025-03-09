@@ -32,8 +32,11 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <ThemeProvider>
-            <Header/>
+
+            <Header />
+            
             {children}
+
             </ThemeProvider>
           </ReactQueryProvider>
       </body>

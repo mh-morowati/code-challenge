@@ -1,19 +1,21 @@
-"use client";
-import { useState, useEffect } from "react";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchPosts } from "@/services/postService";
-import Post from "@/components/Post";
+"use client"
+import { useState, useEffect } from "react"
+import { useInfiniteQuery } from "@tanstack/react-query"
+import { fetchPosts } from "@/services/postService"
+import Post from "@/components/Post"
+
 
 const PageApiFetch = () => {
 
-    const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
+  
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = useInfiniteQuery({
       queryKey: ["posts"],
     queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
       getNextPageParam: (lastPage, allPages) => {
-          return lastPage.length === 0 ? undefined : allPages.length + 1;
+          return lastPage.length === 0 ? undefined : allPages.length + 1
       },
-  });
+  })
 
   
   // Infinite scroll effect
@@ -21,14 +23,14 @@ const PageApiFetch = () => {
     const handleScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
         if (hasNextPage && !isFetchingNextPage) {
-          fetchNextPage();
+          fetchNextPage()
         }
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage])
     
     return (
      <div className="p-8">

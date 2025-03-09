@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
 type PostProps = {
   title: string;
   body: string;
-};
+}
 
 const Post: React.FC<PostProps> = ({ title, body }) => {
   return (
@@ -14,4 +14,4 @@ const Post: React.FC<PostProps> = ({ title, body }) => {
   );
 };
 
-export default Post;
+export default Post
