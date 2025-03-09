@@ -27,7 +27,7 @@ const Login = () => {
             if (!response.ok) throw new Error(data.message || "Login failed")
 
             localStorage.setItem("token", data.token)
-            alert(`Welcome, ${data.user.name}!`)
+            alert(`Welcome, ${data.user.name}! your login is successful`)
         } catch (error) {
             if (error instanceof Error) {
                 setError(error.message)
@@ -42,7 +42,7 @@ const Login = () => {
   return (
     <form
       onSubmit={handleLogin}
-      className="p-6 border rounded-lg shadow-lg bg-white dark:bg-gray-800 max-w-sm mx-auto dark:text-zinc-950"
+      className="p-6 border rounded-lg shadow-lg bg-white max-w-sm mx-auto dark:text-zinc-950"
     >
           <h1 className="text-2xl font-bold mb-4 text-zinc-950 dark:text-white">
               

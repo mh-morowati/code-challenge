@@ -13,7 +13,7 @@ const Post: React.FC<PostProps> = (props) => {
   
   return (
     <div
-      className="p-4 border rounded shadow bg-white dark:bg-gray-800"
+      className="p-4 border rounded shadow bg-white"
     >
       <h3 className="text-lg font-bold text-zinc-950">
         

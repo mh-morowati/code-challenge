@@ -1,7 +1,8 @@
 "use client"
-import { useTheme } from "@/lip/providers/ThemeProvider"
+import { useTheme } from "@/lib/providers/ThemeProvider"
+import Brightness4 from "@mui/icons-material/Brightness4"
+import Brightness7 from "@mui/icons-material/Brightness7"
 import { IconButton } from "@mui/material"
-import { Brightness7, Brightness4 } from '@mui/icons-material'
 
 
 export default function ThemeToggle() {
