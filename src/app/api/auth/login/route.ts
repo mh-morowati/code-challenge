@@ -1,27 +1,29 @@
-import { NextResponse } from "next/server";
-import { User } from "./types";
+import { ApiService } from "@/services/Services"
+import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
-  const { email } = await req.json();
-
+    
   try {
-    // Fetch users from the API
-    const res = await fetch("https://jsonplaceholder.typicode.com/users");
-    const users: User[] = await res.json();
+    const { email } = await req.json()
 
-    // Find user with matching email
-    const user = users.find((u) => u.email === email);
-
-    if (user) {
-      // Simulate a JWT token (since jsonplaceholder doesn't provide one)
-      const fakeToken = `fake-jwt-token-${user.id}`;
-      
-      return NextResponse.json({ token: fakeToken, user }, { status: 200 });
-    } else {
-      return NextResponse.json({ message: "Invalid email" }, { status: 401 });
+    if (!email) {
+      return NextResponse.json({ message: "Email is required" }, { status: 400 })
     }
+
+    const users = await ApiService.getUsers()
+    const user = users.find((u) => u.email === email)
+
+    if (!user) {
+      return NextResponse.json({ message: "User not found" }, { status: 404 })
+    }
+
+    return NextResponse.json({ 
+      token: `fake-jwt-token-${user.id}`, 
+      user: { id: user.id, name: user.name, email: user.email } 
+    })
+
   } catch (error) {
-      console.error(error)
-    return NextResponse.json({ message: "Error fetching users" }, { status: 500 });
+    console.error("Login API Error:", error)
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 })
   }
 }

@@ -1,10 +1,12 @@
-import PageApiFetch from "@/components/PageApiFetch"
+import PostsPage from "@/components/PostsPage"
 
-export default function Home() {
+const Home = () => {
 
   return (
     <main>
-      <PageApiFetch/>
+      <PostsPage/>
     </main>
   )
 }
+
+export default Home

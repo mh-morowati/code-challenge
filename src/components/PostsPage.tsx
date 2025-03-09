@@ -1,8 +1,8 @@
 "use client"
 import { useEffect, useRef } from "react"
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { fetchPosts } from "@/services/postService"
 import Post from "@/components/Post"
+import { ApiService } from '@/services/Services'
 
 interface PostType {
   userId: number
@@ -12,7 +12,7 @@ interface PostType {
 }
 
 
-const PageApiFetch = () => {
+const PostsPage = () => {
 
   const {
     data,
@@ -21,7 +21,7 @@ const PageApiFetch = () => {
     isFetchingNextPage,
   } = useInfiniteQuery({
     queryKey: ["posts"],
-    queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam),
+    queryFn: ({ pageParam = 1 }) => ApiService.fetchPosts(pageParam),
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === 0 ? undefined : allPages.length + 1
     },
@@ -32,6 +32,7 @@ const PageApiFetch = () => {
   const observerRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
@@ -73,4 +74,4 @@ const PageApiFetch = () => {
   )
 }
 
-export default PageApiFetch
+export default PostsPage

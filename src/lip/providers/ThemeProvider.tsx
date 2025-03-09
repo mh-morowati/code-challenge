@@ -3,17 +3,29 @@ import { createTheme, ThemeProvider as MuiThemeProvider } from "@mui/material/st
 import { CssBaseline } from "@mui/material"
 import { createContext, useContext, useEffect, useState } from "react"
 
-const ThemeContext = createContext<{ toggleTheme: () => void; mode: "light" | "dark" }>({
+// Define the context type explicitly for better type safety
+interface ThemeContextProps {
+  toggleTheme: () => void
+  mode: "light" | "dark"
+}
+
+const ThemeContext = createContext<ThemeContextProps>({
   toggleTheme: () => {},
   mode: "light",
 })
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+export const ThemeProvider = (
+    { children }: { children: React.ReactNode }
+) => {
+
   const [mode, setMode] = useState<"light" | "dark">("light")
 
-  useEffect(() => {
+  // Set theme mode from localStorage if available
+    useEffect(() => {
+      
     const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
-    if (savedTheme) setMode(savedTheme)
+        if (savedTheme) setMode(savedTheme)
+        
   }, [])
 
   const toggleTheme = () => {

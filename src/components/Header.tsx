@@ -7,17 +7,30 @@ const Header = () => {
 
     return (
         <div className="h-20 border-b border-zinc-300 place-content-center">
+
             <ThemeToggle />
-            <Link className="" href={"/"}>
+
+            <Link href={"/"}>
                 <Button color="inherit">
-                Code Challenge
-            </Button>
+
+                    Code Challenge
+                    
+                </Button>
             </Link>
-        <Link href={"/login"}>
-         <Button className="float-right md:w-60" size="large" variant="contained" color="success">
-            Login
-            </Button>
-        </Link>
+        
+            <Link href={"/login"}>
+                <Button
+                    className="float-right md:w-60"
+                    size="large"
+                    variant="contained"
+                    color="success"
+                >
+
+                    Login
+                    
+                </Button>
+            </Link>
+            
         </div>
     )
 }
