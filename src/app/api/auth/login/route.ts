@@ -21,6 +21,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Invalid email" }, { status: 401 });
     }
   } catch (error) {
+      console.error(error)
     return NextResponse.json({ message: "Error fetching users" }, { status: 500 });
   }
 }
